@@ -31,4 +31,6 @@ jobs:
         uses: actions/checkout@v3
       - name: Check external dependencies
         uses: surikaterna/check-external-dependencies@main
+        inputs:
+          internal-dependency-pattern: 'surikat'
 ```

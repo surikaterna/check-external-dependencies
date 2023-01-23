@@ -1,17 +1,19 @@
 import * as core from '@actions/core';
-import { createDependencyTable } from './createDependencyTable';
-import { updateLicenses } from './license/updateLicenses';
 import { getExternalDependencies } from './getExternalDependencies';
 import { getPackageJson } from './getPackageJson';
+import { updateLicenses } from './license/updateLicenses';
 
 async function run(): Promise<void> {
   try {
     const packageJson = await getPackageJson();
-    const dependencies = getExternalDependencies(packageJson);
-    await updateLicenses(dependencies);
-    const dependencyTable = createDependencyTable(packageJson.name, dependencies);
+    const dependencyPattern = core.getInput('internal-dependency-pattern');
+    const pattern = dependencyPattern ? new RegExp(dependencyPattern) : undefined;
 
-    core.info(dependencyTable);
+    const dependencies = getExternalDependencies(packageJson, pattern);
+    await updateLicenses(dependencies);
+
+    core.setOutput('externalDependencies', dependencies);
+    core.info(JSON.stringify(dependencies, null, 2));
   } catch (error) {
     if (error instanceof Error) {
       core.setFailed(error.message);
