@@ -1,0 +1,5 @@
+name: Check External Dependency Licenses
+description: Create a list of dependencies, their versions and licenses
+runs:
+  using: node16
+  main: lib/index.js
