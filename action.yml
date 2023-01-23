@@ -1,5 +1,12 @@
 name: Check External Dependency Licenses
 description: Create a list of dependencies, their versions and licenses
+inputs:
+  internal-dependency-pattern:
+    description: 'Pattern to ignore when checking dependencies'
+    default: ''
+outputs:
+  external-dependencies:
+    description: 'A list of objects containing a name, version and license property'
 runs:
   using: node16
   main: lib/index.js

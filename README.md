@@ -29,8 +29,12 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
       - name: Check external dependencies
-        uses: surikaterna/check-external-dependencies@main
-        inputs:
+        uses: surikaterna/check-external-dependencies@v1.0.0
+        with:
           internal-dependency-pattern: 'surikat'
 ```

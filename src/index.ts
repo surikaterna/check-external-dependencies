@@ -12,7 +12,7 @@ async function run(): Promise<void> {
     const dependencies = getExternalDependencies(packageJson, pattern);
     await updateLicenses(dependencies);
 
-    core.setOutput('externalDependencies', dependencies);
+    core.setOutput('external-dependencies', dependencies);
     core.info(JSON.stringify(dependencies, null, 2));
   } catch (error) {
     if (error instanceof Error) {
