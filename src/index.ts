@@ -13,7 +13,7 @@ async function run(): Promise<void> {
     await updateLicenses(dependencies);
 
     core.setOutput('external-dependencies', dependencies);
-    core.info(JSON.stringify(dependencies, null, 2));
+    core.debug(JSON.stringify(dependencies, null, 2));
   } catch (error) {
     if (error instanceof Error) {
       core.setFailed(error.message);
