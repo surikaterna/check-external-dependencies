@@ -9,7 +9,7 @@ Create a list of dependencies, their versions and licenses.
 * Get the dependencies and devDependencies
 * Create a list of the name of the dependencies and their version
 * Lookup the dependency in the NPM registry, and att the license property to each dependency
-* Create an HTML table with the dependency name, version and license
+* Set `externalDependencies` to action output for consumption in other GitHub actions
 
 # Usage
 
