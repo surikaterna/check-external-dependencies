@@ -19,4 +19,5 @@ export const getExternalDependencies = (packageJson: PackageJson, internalDepsRe
           license: FALLBACK_LICENSE_VALUE
         }),
       <Array<ExternalDependency>>[]
-    );
+    )
+    .sort((a, b) => a.name.localeCompare(b.name));

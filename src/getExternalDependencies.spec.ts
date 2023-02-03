@@ -20,16 +20,6 @@ describe('#getExternalDependencies', () => {
     it('should exclude packages starting with "@surikat"', () => {
       expect(getExternalDependencies(packageJson)).toEqual([
         {
-          name: 'lodash',
-          version: '^1.3.4',
-          license: ''
-        },
-        {
-          name: 'saft',
-          version: '^1.3.4',
-          license: ''
-        },
-        {
           name: '@other/tool',
           version: '^0.0.1',
           license: ''
@@ -37,6 +27,16 @@ describe('#getExternalDependencies', () => {
         {
           name: 'eslint-config-surikat',
           version: '^4.0.4',
+          license: ''
+        },
+        {
+          name: 'lodash',
+          version: '^1.3.4',
+          license: ''
+        },
+        {
+          name: 'saft',
+          version: '^1.3.4',
           license: ''
         }
       ]);
@@ -47,6 +47,11 @@ describe('#getExternalDependencies', () => {
     it('should exclude packages including "surikat"', () => {
       expect(getExternalDependencies(packageJson, /surikat/)).toEqual([
         {
+          name: '@other/tool',
+          version: '^0.0.1',
+          license: ''
+        },
+        {
           name: 'lodash',
           version: '^1.3.4',
           license: ''
@@ -54,11 +59,6 @@ describe('#getExternalDependencies', () => {
         {
           name: 'saft',
           version: '^1.3.4',
-          license: ''
-        },
-        {
-          name: '@other/tool',
-          version: '^0.0.1',
           license: ''
         }
       ]);
