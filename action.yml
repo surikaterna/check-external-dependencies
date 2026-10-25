@@ -7,6 +7,19 @@ inputs:
 outputs:
   external-dependencies:
     description: 'A list of objects containing a name, version and license property'
+    value: ${{ steps.action.outputs.external-dependencies }}
 runs:
-  using: node16
-  main: lib/index.js
+  using: composite
+  steps:
+    - name: Install patched Node.js
+      uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
+      with:
+        node-version: '22.23.4'
+        package-manager-cache: false
+    - name: Check external dependencies
+      id: action
+      shell: bash
+      env:
+        ACTION_PATH: ${{ github.action_path }}
+        INPUT_INTERNAL-DEPENDENCY-PATTERN: ${{ inputs.internal-dependency-pattern }}
+      run: node "$ACTION_PATH/lib/index.js"
